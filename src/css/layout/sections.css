@@ -1,0 +1,554 @@
+/* === Układ: Sekcje === */
+
+/* === ZMIANA: Dużo "powietrza" między sekcjami === */
+.section {
+    padding: var(--section-padding) 0;
+}
+.section--no-padding-top {
+    padding-top: 0;
+}
+.section--light-bg {
+    /* Używamy domyślnego tła, ale możemy dodać wariant */
+    background-color: var(--white); /* Czysta biel dla kontrastu */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.03), 0 -20px 40px rgba(0,0,0,0.03);
+}
+
+/* === ZMIANA: Nagłówki sekcji w kolorze akcentu === */
+.section__title {
+    font-size: clamp(2rem, 5vw, 2.5rem); /* ~40px */
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--space-5);
+    color: var(--primary-700);
+    text-align: center; /* Domyślnie centrujemy nagłówki */
+}
+.section__title--small {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-4);
+    text-align: left;
+}
+
+/* =================================================================== */
+/* Layout: Sekcja Hero (WERSJA POPRAWIONA I KOMPLETNA)
+/* =================================================================== */
+/* Plik: src/css/layout/sections.css */
+
+.hero {
+  --hero-min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: var(--hero-min-height);
+  position: relative;
+  color: white;
+  background-color: #333; /* Fallback na wypadek niewczytania obrazka */
+}
+
+/* Tło <picture> (warstwa 1 - obraz) */
+.hero picture.hero__bg {
+  position: absolute;
+  inset: 0; /* skrót dla top/left/bottom/right: 0 */
+  z-index: 1;
+  display: block;
+}
+
+.hero picture.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Nakładka z gradientem (warstwa 2) */
+.hero .hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* Twój nowy gradient, płynnie przechodzący w tło strony */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,  /* Ciemny top dla czytelności menu */
+    rgba(0, 0, 0, 0) 50%,
+    #F7F5F0 95%             /* Płynne przejście do tła strony (zgodnie z Twoją paletą) */
+  );
+}
+
+/* Kontener na treść (warstwa 3) */
+.hero .hero__content {
+  position: relative;
+  z-index: 3;
+  padding: 1rem;
+}
+
+/* Nagłówek H1 */
+.hero__content h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* === POPRAWKA PODTYTUŁU === */
+/* Używamy ".hero__content p", ponieważ tak jest w Twoim HTML
+   (a NIE ".hero__subtitle") */
+.hero__content p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto; /* Centruje i ustawia margines dolny */
+  
+  /* Lepsza widoczność (z poprzednich kroków) */
+  font-weight: 600; 
+  /* Twój nowy, żądany cień */
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* === POPRAWKA KONTENERA PRZYCISKÓW === */
+/* Używamy ".hero__cta-group", ponieważ tak jest w Twoim HTML
+   (a NIE ".hero__actions-container") */
+.hero__cta-group {
+  /* Style, które podałeś: */
+  display: flex;
+  justify-content: center; /* Centruje przyciski w poziomie */
+  align-items: center;     /* Wyrównuje przyciski w pionie */
+  gap: 16px;               /* Odstęp między przyciskami */
+  flex-wrap: wrap;       /* Łamanie na mobilkach */
+
+  /* Kluczowe reguły (z poprzednich kroków) dla centrowania całej grupy pod tekstem */
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* Media query dla H1 (raz, bez duplikatów) */
+@media (min-width: 768px) {
+  .hero__content h1 {
+    font-size: 3.5rem; /* 56px */
+  }
+}
+
+/* ----- Sekcja Jak Pomóc ----- */
+.help-option {
+    text-align: center;
+    padding: var(--space-5);
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-elastic);
+}
+.help-option:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+.help-option__icon-wrapper {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+    color: var(--accent-500); /* Nowy kolor akcentu */
+}
+.help-option__title {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-3);
+    color: var(--primary-700);
+}
+.help-option p {
+    margin-bottom: var(--space-4);
+    color: var(--primary-500);
+}
+
+/* ----- Sekcja CTA Banner (1.5%) ----- */
+.section--cta-banner {
+    background-color: var(--background-dark); /* Ciemne tło */
+    color: var(--white);
+    text-align: center;
+}
+.cta-banner__title {
+    color: var(--white);
+}
+.cta-banner__krs {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-500); /* Akcent dla numeru */
+    margin-bottom: var(--space-3);
+    border: 2px dashed var(--accent-500);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    display: inline-block;
+}
+.cta-banner__text {
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+    margin: 0 auto var(--space-5) auto;
+    opacity: 0.9;
+}
+/* Przycisk na ciemnym tle musi być jasny */
+.section--cta-banner .btn--primary {
+    background: linear-gradient(90deg, var(--accent-600) 0%, var(--accent-500) 100%);
+    color: var(--primary-700);
+}
+
+/* ----- Strony Podstron (o-nas, kontakt, pomagam) ----- */
+.section--page-header {
+    background-color: var(--background-dark);
+    color: var(--white);
+    padding: var(--space-6) 0; /* Większy padding */
+    margin-bottom: var(--section-padding);
+}
+.page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+}
+
+/* ----- Strona Pomagam (1.5%) ----- */
+.data-box {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    margin: var(--space-5) 0;
+    text-align: center;
+}
+.data-box--krs {
+    background-color: var(--accent-500);
+    color: var(--primary-700); /* Ciemny tekst */
+    box-shadow: var(--shadow-lg);
+}
+.data-box__label {
+    display: block;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+.data-box__value {
+    display: block;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+}
+
+.calculator-form {
+    background-color: var(--white);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+.calculator-result__value {
+    color: var(--accent-500); /* Kolor akcentu */
+}
+
+.data-box--account {
+    background-color: var(--white);
+    border: 2px dashed var(--accent-500);
+    color: var(--primary-700);
+}
+.data-box--account .data-box__value {
+    color: var(--primary-700);
+}
+
+/* ----- Formularz Kontaktowy ----- */
+.form-label {
+    color: var(--primary-700);
+}
+.form-control {
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    border-radius: var(--radius-sm);
+}
+.form-control:focus,
+.form-control:focus-visible {
+    border-color: var(--accent-500);
+    box-shadow: 0 0 0 3px rgba(234, 166, 78, 0.2);
+}
+
+/* offset dla przewijania do sekcji z id=... */
+[id] { scroll-margin-top: var(--header-height, 88px); }
+
+/* (Upewnij się, że ten fragment jest w Twoim pliku sections.css) */
+
+/* ----- Sekcja Partnerzy ----- */
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-5);
+    align-items: center;
+    justify-items: center;
+}
+.partners-grid__item img {
+    max-width: 150px; /* <--- TO NAPRAWI ROZMIAR LOGA */
+    height: auto;
+    filter: grayscale(100%); /* <--- TO ZROBI LOGO CZARNO-BIAŁE */
+    opacity: 0.7;
+    transition: var(--transition-base);
+}
+.partners-grid__item img:hover {
+    filter: grayscale(0%); /* <--- TO PRZYWRÓCI KOLOR (np. niebieski) PO NAJECHANIU */
+    opacity: 1;
+}
+
+/* (Reszta pliku sections.css) */
+/* ... */
+/* === Kontakt preview: "Masz pytania?" (estetyka + spacing) === */
+.section--contact-preview {
+  /* więcej powietrza niż standardowa sekcja */
+  padding: clamp(64px, 10vw, 120px) 0;
+  background: var(--background-light);
+}
+
+/* nadpisujemy efekt cienia z .section--light-bg, żeby ta sekcja była „czysta” */
+.section--contact-preview.section--light-bg {
+  box-shadow: none;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* sam kontener – węższy, wycentrowany, z ładną pionową siatką */
+#kontakt-preview .container {
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  gap: var(--space-5); /* spójny odstęp między h2, p i przyciskiem */
+}
+
+/* nagłówek: trochę większy, z lepszym kontrastem */
+#kontakt-preview .section__title {
+  font-size: clamp(2.2rem, 4.5vw, 2.8rem);
+  color: var(--primary-800);
+  margin-bottom: 0; /* gap z kontenera już to ogarnia */
+}
+
+/* akapit: większy rozmiar, lepsza czytelność */
+#kontakt-preview p {
+  font-size: clamp(1.05rem, 1.6vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--primary-600);
+  margin: 0; /* gap załatwia odstępy */
+}
+
+/* CTA: centralnie, wyraźniej, z lekkim podbiciem */
+#kontakt-preview .btn {
+  justify-self: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(0,0,0,.10);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+#kontakt-preview .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.14);
+}
+
+/* mobile drobiazgi */
+@media (max-width: 640px) {
+  .section--contact-preview {
+    padding: 56px 0 72px;
+  }
+  #kontakt-preview .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;         /* Pozwala przyciskom przeskoczyć do nowej linii */
+  gap: 1rem;
+  justify-content: center; /* <-- TO JEST KLUCZOWE */
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* =================================================================== */
+/* DODANY BLOK: Style dla strony Kontakt (wersja "lekka")
+/* =================================================================== */
+
+/* Nagłówek strony (H1 + opis) na jasnym tle */
+.section__header--center {
+  text-align: center;
+  margin-inline: auto; /* Centrowanie bloku */
+  
+  /* === POPRAWKA ODSTĘPU (zgodnie z prośbą) === */
+  margin-bottom: 10px; /* Zwiększony odstęp dla "oddechu" */
+}
+/* DODAJ TĘ NOWĄ REGUŁĘ PONIŻEJ: */
+
+/* Zwiększamy odstęp TYLKO na stronie kontaktu */
+body.page--contact .section__header--center {
+  margin-bottom: 50px; /* Tutaj ustaw duży odstęp */
+}
+
+/* Nadpisujemy domyślny kolor tytułu .page-title (musi być ciemny) */
+.page--contact .page-title {
+  color: #555555;
+  margin-bottom: var(--space-xs, 8px);
+}
+
+/* Stylujemy paragraf pod tytułem */
+.section__header--center p {
+  color: var(--primary-600, #555);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6;
+}
+
+/* Upewniamy się, że sekcja .section--contact ma odstęp od góry */
+.section--contact {
+   padding-top: var(--space-xl, 48px);
+}
+
+
+/* =======================
+   Kontakt – układ + style
+   ======================= */
+
+/* Szerokości kontenerów pomocniczych (jeśli ich nie masz) */
+.container--wide   { max-width: 1240px; }
+.container--narrow { max-width: 840px;  }
+
+/* Pasek tytułowy na podstronach (już masz, ale doprecyzowuję odstępy) */
+.section--page-header .container {
+  padding-block: clamp(28px, 4vw, 44px);
+}
+.section--page-header p {
+  margin-top: 8px;
+  opacity: .9;
+}
+
+/* Grid dwóch kolumn: dane po lewej, formularz po prawej */
+.contact-grid {
+  display: grid;
+  gap: clamp(20px, 2vw, 28px);
+  align-items: start;
+  grid-template-columns: 1fr;           /* mobile */
+}
+@media (min-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.15fr;   /* desktop: 2 kolumny */
+  }
+}
+
+/* Kafelek z danymi */
+.contact-info {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: var(--shadow-md);
+}
+.contact-info h3 {
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  margin: 0 0 12px 0;
+  color: var(--primary-700);
+}
+.contact-info h4 {
+  font-weight: var(--font-weight-bold);
+  margin: 18px 0 6px;
+  color: var(--primary-700);
+}
+.contact-info a { color: var(--accent-500); }
+
+/* Formularz */
+.contact-form {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: var(--shadow-lg);
+}
+.contact-form h3 {
+  font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  margin: 0 0 12px 0;
+  color: var(--primary-700);
+}
+
+/* Rzędy formularza */
+.form-row {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.form-row--two {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 600px) {
+  .form-row--two {
+    grid-template-columns: 1fr 1fr; /* imię + e-mail obok siebie */
+  }
+}
+
+/* Pola formularza na pełną szerokość */
+.contact-form .form-control,
+.contact-form select,
+.contact-form textarea,
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border-color);
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font: inherit;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+.contact-form .form-label {
+  color: var(--primary-700);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Walidacja – delikatny styl błędu opcjonalnie */
+.form-error-message {
+  display: block;
+  min-height: 18px;
+  color: #b42318;
+  font-size: .9rem;
+}
+
+/* Odstęp sekcji kontakt od stopki, by footer nie „przyklejał się” */
+.section--contact { padding-top: var(--space-xl, 144px);
+}
+
+/* ======================================= */
+/* Style dla kopiowania KRS (Click-to-Copy)
+/* ======================================= */
+
+/* Pokazuje, że blok jest interaktywny */
+.data-box--krs[data-copy-target] {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Lekkie powiększenie przy najechaniu */
+.data-box--krs[data-copy-target]:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Styl feedbacku po kliknięciu (po dodaniu klasy .is-copied przez JS) */
+.data-box--krs.is-copied .data-box__label {
+    /* Użyj koloru, który dobrze kontrastuje z pomarańczowym tłem */
+    color: var(--primary-800, #2d2d2d) !important; 
+    font-weight: var(--font-weight-bold);
+}
+/* Ujednolicenie koloru nagłówków stron (Pomagam / Kontakt) */
+.section--page-header .page-title {
+  color: #555555;
+}
+body.page--o-nas .section:first-of-type {
+    /* Domyślnie było: var(--section-padding) */
+    padding-bottom: var(--space-5, 32px); 
+}
+
+/* 2. Znajdujemy drugą sekcję (tę z "Kim jesteśmy?")
+     i drastycznie zmniejszamy jej górny odstęp.
+*/
+body.page--o-nas .section:first-of-type + .section {
+    /* Domyślnie było: var(--section-padding) */
+    padding-top: var(--space-4, 24px);
+}

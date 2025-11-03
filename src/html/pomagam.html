@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przekaż 1,5% PIT - Towarzystwo Opieki nad Zwierzętami</title>
+    <meta name="description"
+        content="Przekaż 1,5% podatku na Towarzystwo Opieki nad Zwierzętami. KRS 0000154454. Twoja pomoc ratuje życie.">
+
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/main.js" type="module" defer></script>
+
+    <link rel="icon" href="../assets/images/icons/favicon.ico" sizes="any">
+    <link rel="icon" href="../assets/images/icons/favicon.svg" type="image/svg+xml">
+</head>
+
+<body class="page page--pomagam">
+
+    <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
+
+    <header class="site-header site-header--scrolled" id="site-header">
+        <div class="container site-header__container">
+            <a href="/" class="site-header__logo-link">
+                <img src="../assets/images/logo-tpz.png" data-logo-light="../assets/images/logo-tpz-white.png"
+                    data-logo-dark="../assets/images/logo-tpz.png"
+                    alt="Towarzystwo Opieki nad Zwierzętami - strona główna"
+                    class="site-header__logo site-header__logo--tpz">
+                <img src="../assets/images/logo-epl.png" data-logo-light="../assets/images/logo-epl-white.png"
+                    data-logo-dark="../assets/images/logo-epl-black.png" alt="Stowarzyszenie EuropejskaPL - Partner"
+                    class="site-header__logo site-header__logo--epl">
+            </a>
+            <button class="site-header__hamburger" type="button" aria-label="Otwórz menu" aria-expanded="false"
+                aria-controls="main-nav">
+                <span class="site-header__hamburger-box">
+                    <span class="site-header__hamburger-inner"></span>
+                </span>
+            </button>
+            <nav class="site-header__nav" id="main-nav" aria-label="Główna nawigacja">
+                <ul class="site-header__nav-list">
+                    <li class="site-header__nav-item"><a href="o-nas.html" class="site-header__nav-link">O nas</a></li>
+                    <li class="site-header__nav-item"><a href="/#historie" class="site-header__nav-link">Historie</a>
+                    </li>
+                    <li class="site-header__nav-item"><a href="/#jak-pomoc" class="site-header__nav-link">Jak pomóc?</a>
+                    </li>
+                    <li class="site-header__nav-item"><a href="kontakt.html" class="site-header__nav-link">Kontakt</a>
+                    </li>
+                </ul>
+                <a href="pomagam.html" class="btn btn--primary site-header__nav-cta" aria-current="page">Przekaż
+                    1,5%</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <section class="section section--contact" id="page-header-section">
+            <div class="container container--wide section__header--center reveal-on-scroll">
+                <h1 class="page-title">Pomóż nam pomagać</h1>
+                <p>Twój 1,5% podatku lub darowizna online to realne wsparcie dla naszych podopiecznych. Zobacz, jak
+                    możesz pomóc.</p>
+            </div>
+        </section>
+
+        <section class="section section--no-padding-top" id="pit-1-5">
+            <div class="container">
+                <div class="grid grid--2-cols-gap">
+
+                    <div class="reveal-on-scroll">
+                        <h2 class="section__title section__title--small" style="text-align: left;">Przekaż 1,5% podatku
+                        </h2>
+                        <p>Rozliczając swój PIT, możesz wesprzeć naszych podopiecznych. To realna pomoc, która nic Cię
+                            nie kosztuje. Wystarczy, że w odpowiedniej rubryce zeznania podatkowego wpiszesz nasz numer
+                            KRS.</p>
+                        <div class="data-box data-box--krs" data-copy-target="0000154454">
+                            <span class="data-box__label" id="krs-copy-label">Nasz numer KRS</span>
+                            <span class="data-box__value">0000154454</span>
+
+                            <small class="data-box__copy-prompt">Kliknij w ten blok, aby skopiować numer</small>
+                        </div>
+                        <p>Dziękujemy za każdą złotówkę przekazaną w ten sposób! To dzięki Wam możemy kupować karmę,
+                            leki i opłacać skomplikowane operacje.</p>
+                        <img src="../assets/images/banner-1-5.jpg"
+                            alt="Banner zachęcający do przekazania 1,5% podatku, KRS 0000154454" loading="lazy"
+                            class="responsive-image">
+                    </div>
+
+                    <div class="reveal-on-scroll" data-reveal-delay="100">
+                        <h3 class="section__title section__title--small">Oblicz swoją darowiznę</h3>
+                        <p>Sprawdź, ile możesz przekazać. Wpisz kwotę swojego podatku należnego:</p>
+                        <form class="calculator-form" id="calculator-1-5">
+                            <div class="form-group">
+                                <label for="pit-amount" class="form-label">Kwota podatku należnego (zł)</label>
+                                <input type="number" id="pit-amount" class="form-control" placeholder="np. 2500" min="0"
+                                    step="0.01">
+                            </div>
+                            <div class="calculator-result">
+                                <span class="calculator-result__label">Wspierasz nas kwotą:</span>
+                                <span class="calculator-result__value" id="pit-result">0.00 zł</span>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--light-bg" id="darowizna">
+            <div class="container container--medium reveal-on-scroll">
+                <h2 class="section__title section__title--center">Wpłać darowiznę</h2>
+                <p>Twoja wpłata online to najszybszy sposób na pomoc. Każda kwota ma znaczenie i pozwala nam działać
+                    natychmiast.</p>
+                <div class="data-box data-box--account">
+                    <span class="data-box__label">Nasz numer konta</span>
+                    <span class="data-box__value">(Wpisz numer konta bankowego)</span>
+                    <p>
+                        Towarzystwo Opieki nad Zwierzętami<br>
+                        Oddział w Tarnowie<br>
+                        Tytułem: "Darowizna na cele statutowe"
+                    </p>
+                </div>
+                <div class="text-center">
+                    <a href="https://LINK-DO-BRAMKI-PLATNOSCI.PL" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn btn--primary btn--large">Wpłacam online</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__container">
+
+            <div class="site-footer__col site-footer__col--about">
+                <img src="../assets/images/logo-tpz-white.png" alt="Towarzystwo Opieki nad Zwierzętami"
+                    class="site-footer__logo" loading="lazy">
+                <p>Pomagamy zwierzętom w potrzebie. Leczymy, znajdujemy domy, edukujemy. Działamy w Tarnowie i
+                    okolicach.</p>
+            </div>
+
+            <div class="site-footer__col site-footer__col--nav">
+                <h4 class="site-footer__title">Na skróty</h4>
+                <ul class="site-footer__list">
+                    <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="/#historie">Nasi podopieczni</a></li>
+                    <li><a href="/#jak-pomoc">Jak pomóc?</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="site-footer__col site-footer__col--legal">
+                <h4 class="site-footer__title">Formalności</h4>
+                <ul class="site-footer__list">
+                    <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+                    <li><a href="#">Statut</a></li>
+                </ul>
+            </div>
+
+            <div class="site-footer__col site-footer__col--data">
+                <h4 class="site-footer__title">Dane organizacji</h4>
+                <p>
+                    <strong>Towarzystwo Opieki nad Zwierzętami</strong><br>
+                    Oddział w Tarnowie<br>
+                    ul. Przykładowa 1, 33-100 Tarnów<br>
+                    <strong>KRS:</strong> 0000154454<br>
+                    <strong>NIP:</strong> (Wpisz NIP)<br>
+                    <strong>REGON:</strong> (Wpisz REGON)
+                </p>
+            </div>
+
+        </div>
+        <div class="site-footer__bottom-bar">
+            <div class="container">
+                <p>© <span id="current-year"></span> Towarzystwo Opieki nad Zwierzętami. Wszelkie prawa zastrzeżone.</p>
+                <div class="site-footer__socials">
+                    <a href="#" aria-label="Facebook"><span class="icon-facebook"></span></a>
+                    <a href="#" aria-label="Instagram"><span class="icon-instagram"></span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

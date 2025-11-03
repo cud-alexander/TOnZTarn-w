@@ -1,0 +1,50 @@
+.floater-zone{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* warstwa pod treścią */
+.floater-layer{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+/* treść sekcji zawsze nad floaterami */
+.floater-zone > :not(.floater-layer){
+  position: relative;
+  z-index: 1;
+}
+
+.floater{
+  position: absolute;
+  /* === POPRAWKA: Usunięto błędne znaki '+' === */
+  left: 0;
+  top: 0;
+  will-change: transform;
+  opacity: .25;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.15));
+  transform: translate3d(0,0,0) scale(1);
+  transition: opacity .3s ease;
+}
+.floater--accent   { color: var(--accent-600); }
+.floater--accent2  { color: var(--accent-500); }
+.floater--neutral  { color: rgba(0,0,0,.15); }
+.floater svg{ display:block; width: var(--size, 48px); height: var(--size, 48px); }
+
+@media (prefers-reduced-motion: reduce){
+  .floater{ opacity:.12; }
+}
+
+/* delikatny obrót – tylko dla elementów z klasą .floater--spin */
+.floater svg {
+  transform-origin: 50% 50%;
+}
+.floater--spin svg {
+  animation: floater-spin var(--spin, 24s) linear infinite;
+}
+
+@keyframes floater-spin {
+  from { transform: rotate(var(--spin-start, 0deg)); }
+  to   { transform: rotate(calc(var(--spin-start, 0deg) + 360deg)); }
+}

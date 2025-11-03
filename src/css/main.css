@@ -1,0 +1,47 @@
+/* === Główny Plik CSS (Naprawa - bez czcionek) === */
+
+/*
+  BLOK CZCIONEK JEST WYŁĄCZONY.
+  Przeglądarka ignoruje teraz brakujące pliki .woff2.
+  Gdy będziesz gotowy, aby je dodać do /src/assets/fonts/,
+  możesz odkomentować ten blok.
+*/
+/*
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/montserrat-v26-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/montserrat-v26-latin-700.woff2') format('woff2');
+}
+*/
+
+/* Importujemy wszystkie moduły */
+
+/* Baza */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/helpers.css';
+
+/* Układ */
+@import './layout/header.css'; /* Ten plik naprawi Twoje logo */
+@import './layout/footer.css';
+@import './layout/sections.css';
+
+/* Komponenty */
+@import './components/nav.css'; /* Ten plik naprawi Twoje menu */
+@import './components/cards.css';
+
+/* Animacje (teraz włączone) */
+/* Jeśli strona znowu się zepsuje, zakomentuj tę linię poniżej */
+@import './animations.css';
+
+@import './components/floater.css';
+

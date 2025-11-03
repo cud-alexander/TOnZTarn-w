@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Towarzystwo Opieki nad Zwierzętami - #PomagamBoLubię</title>
+    <meta name="description"
+        content="Pomóż nam ratować zwierzęta. Przekaż 1,5% podatku lub zostań wolontariuszem. Każda pomoc ma znaczenie. #PomagamBoLubię">
+
+    <link rel="preload" as="image" href="src/assets/images/hero-desktop.webp" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="src/assets/images/hero-mobile.webp" media="(max-width: 768px)">
+
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F5F0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            --hero-min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: var(--hero-min-height);
+            position: relative;
+            color: white;
+            background-color: #333;
+        }
+
+        .hero__background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.0) 50%, #F7F5F0 95%);
+            z-index: 2;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 3;
+            padding: 1rem;
+        }
+
+        .hero__content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero__content p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero__cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border: 2px solid transparent;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn--primary {
+            background: linear-gradient(90deg, #F8C471 0%, #EAA64E 100%);
+            color: #2c2c2c;
+        }
+
+        .btn--outline {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+    </style>
+    <style>
+        /* HERO — poprawne warstwy tła */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero picture.hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: block;
+        }
+
+        .hero picture.hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero .hero__overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .4) 0%, rgba(0, 0, 0, 0) 50%, #F7F5F0 95%);
+        }
+
+        .hero .hero__content {
+            position: relative;
+            z-index: 3;
+        }
+    </style>
+
+    <link rel="stylesheet" href="src/css/main.css">
+    <script src="src/js/main.js" type="module" defer></script>
+
+    <link rel="icon" href="src/assets/images/icons/favicon.ico" sizes="any">
+    <link rel="icon" href="src/assets/images/icons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="src/assets/images/icons/apple-touch-icon.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NonprofitOrganization",
+      "name": "Towarzystwo Opieki nad Zwierzętami",
+      "url": "https://twoja-domena.pl",
+      "logo": "https://twoja-domena.pl/src/assets/images/logo-tpz.png",
+      "sameAs": [
+        "https://www.facebook.com/twoj-profil",
+        "https://www.instagram.com/twoj-profil"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+48 123 456 789",
+        "contactType": "customer service"
+      },
+      "nonprofitStatus": "https://schema.org/Nonprofit501c3",
+      "naics": "813312"
+    }
+    </script>
+</head>
+
+<body>
+
+    <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
+
+    <header class="site-header" id="site-header">
+        <div class="container site-header__container">
+            <a href="/" class="site-header__logo-link">
+                <img src="/src/assets/images/logo-tpz-white.png" data-logo-light="/src/assets/images/logo-tpz-white.png"
+                    data-logo-dark="/src/assets/images/logo-tpz.png"
+                    alt="Towarzystwo Opieki nad Zwierzętami - strona główna"
+                    class="site-header__logo site-header__logo--tpz" />
+                <img src="/src/assets/images/logo-epl-white.png" data-logo-light="/src/assets/images/logo-epl-white.png"
+                    data-logo-dark="/src/assets/images/logo-epl-black.png" alt="Stowarzyszenie EuropejskaPL - Partner"
+                    class="site-header__logo site-header__logo--epl" />
+            </a>
+
+            <button class="site-header__hamburger" type="button" aria-label="Otwórz menu" aria-expanded="false"
+                aria-controls="main-nav">
+                <span class="site-header__hamburger-box">
+                    <span class="site-header__hamburger-inner"></span>
+                </span>
+            </button>
+
+            <nav class="site-header__nav" id="main-nav" aria-label="Główna nawigacja">
+                <ul class="site-header__nav-list">
+                    <li class="site-header__nav-item"><a href="src/html/o-nas.html" class="site-header__nav-link">O
+                            nas</a></li>
+                    <li class="site-header__nav-item"><a href="#historie" class="site-header__nav-link">Historie</a>
+                    </li>
+                    <li class="site-header__nav-item"><a href="#jak-pomoc" class="site-header__nav-link">Jak pomóc?</a>
+                    </li>
+                    <li class="site-header__nav-item"><a href="src/html/kontakt.html"
+                            class="site-header__nav-link">Kontakt</a></li>
+                </ul>
+                <a href="src/html/pomagam.html" class="btn btn--primary site-header__nav-cta">Przekaż 1,5%</a>
+            </nav>
+        </div>
+    </header>
+    <main id="main-content">
+
+        <section class="hero" id="hero">
+            <picture class="hero__bg">
+                <source srcset="src/assets/images/hero-desktop.webp" type="image/webp" media="(min-width: 769px)">
+                <source srcset="src/assets/images/hero-desktop.jpg" type="image/jpeg" media="(min-width: 769px)">
+                <source srcset="src/assets/images/hero-mobile.webp" type="image/webp" media="(max-width: 768px)">
+                <source srcset="src/assets/images/hero-mobile.jpg" type="image/jpeg" media="(max-width: 768px)">
+                <img src="src/assets/images/hero-desktop.jpg"
+                    alt="Dłoń człowieka i łapa psa symbolizujące zaufanie i pomoc">
+            </picture>
+            <div class="hero__overlay"></div>
+            <div class="hero__content" id="hero-content">
+                <h1>Pomagamy, bo lubimy.</h1>
+                <p>Podaruj 1,5% dla tych, którzy nie mają głosu.</p>
+                <div class="hero__cta-group">
+                    <a href="src/html/pomagam.html" class="btn btn--primary btn--large">Przekaż 1,5%</a>
+                    <a href="#jak-pomoc" class="btn btn--outline btn--large">Wspieram inaczej</a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section section--mission" id="misja">
+            <div class="container container--medium reveal-on-scroll">
+                <h2 class="section__title">Nasza misja: realna pomoc</h2>
+                <p>Nie jesteśmy obojętni na krzywdę. Naszym celem jest zapewnienie opieki, leczenie i znalezienie nowych
+                    domów dla bezdomnych i skrzywdzonych zwierząt. &nbsp; &nbsp;&nbsp; Wierzymy, że każde życie jest
+                    cenne.</p>
+                <p>Działamy w Tarnowie i okolicach, interweniując w przypadkach zaniedbań i znęcania się. Prowadzimy
+                    edukację prozwierzęcą, promujemy sterylizację i odpowiedzialną adopcję.</p>
+                <p>Nasza fundacja opiera się na wolontariacie i wsparciu darczyńców. Bez Waszej pomocy nie moglibyśmy
+                    ratować setek istnień rocznie.</p>
+                <p>Dziękujemy, że jesteście z nami.</p>
+            </div>
+        </section>
+
+        <section class="section section--stories section--light-bg floater-zone" data-floater-zone id="historie">
+            <div class="container">
+                <h2 class="section__title section__title--center reveal-on-scroll">Poznaj naszych podopiecznych</h2>
+                <div class="grid grid--3-cols stories-grid">
+
+                    <article class="card story-card reveal-on-scroll">
+                        <picture class="card__image-wrapper">
+                            <img src="src/assets/images/story-1.jpg" alt="Uratowany pies 'Burek' bawi się na trawie"
+                                class="card__image" loading="lazy">
+                        </picture>
+                        <div class="card__content">
+                            <h3 class="card__title">Historia Burka</h3>
+                            <p class="card__text">Trafił do nas skrajnie wyczerpany i nieufny. Dziś to wulkan energii,
+                                który czeka na kochający dom.</p>
+                            <a href="#" class="card__link">Czytaj więcej</a>
+                        </div>
+                    </article>
+
+                    <article class="card story-card reveal-on-scroll" data-reveal-delay="100">
+                        <picture class="card__image-wrapper">
+                            <img src="src/assets/images/story-2.jpg" alt="Mały kot 'Mruczek' śpi w legowisku"
+                                class="card__image" loading="lazy">
+                        </picture>
+                        <div class="card__content">
+                            <h3 class="card__title">Mała Mruczka i jej start</h3>
+                            <p class="card__text">Znaleziona w kartonie, dziś bezpieczna i zdrowa. Szukamy dla niej
+                                spokojnego domu.</p>
+                            <a href="#" class="card__link">Czytaj więcej</a>
+                        </div>
+                    </article>
+
+                    <article class="card story-card reveal-on-scroll" data-reveal-delay="200">
+                        <picture class="card__image-wrapper">
+                            <img src="src/assets/images/story-3.jpg"
+                                alt="Starszy pies 'As' na spacerze z wolontariuszem" class="card__image" loading="lazy">
+                        </picture>
+                        <div class="card__content">
+                            <h3 class="card__title">Spokojna jesień Asa</h3>
+                            <p class="card__text">As to starszy pan, który zasługuje na godną emeryturę. Może czeka
+                                właśnie na Ciebie?</p>
+                            <a href="#" class="card__link">Czytaj więcej</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--how-to-help" id="jak-pomoc">
+            <div class="container">
+                <h2 class="section__title section__title--center reveal-on-scroll">Ty też możesz pomóc</h2>
+                <div class="grid grid--3-cols help-grid">
+
+                    <div class="help-option reveal-on-scroll">
+                        <div class="help-option__icon-wrapper">
+                            <span class="help-option__icon" aria-hidden="true">❤️</span>
+                        </div>
+                        <h3 class="help-option__title">Przekaż 1,5% PIT</h3>
+                        <p>To nic nie kosztuje, a dla nas to realne wsparcie. Nasz KRS: <strong>0000154454</strong></p>
+                        <a href="src/html/pomagam.html" class="btn btn--secondary">Dowiedz się więcej</a>
+                    </div>
+
+                    <div class="help-option reveal-on-scroll" data-reveal-delay="100">
+                        <div class="help-option__icon-wrapper">
+                            <span class="help-option__icon" aria-hidden="true">🤝</span>
+                        </div>
+                        <h3 class="help-option__title">Zostań wolontariuszem</h3>
+                        <p>Spacery, opieka, pomoc w schronisku. Każda para rąk do głaskania jest na wagę złota.</p>
+                        <a href="src/html/kontakt.html" class="btn btn--secondary">Dołącz do nas</a>
+                    </div>
+
+                    <div class="help-option reveal-on-scroll" data-reveal-delay="200">
+                        <div class="help-option__icon-wrapper">
+                            <span class="help-option__icon" aria-hidden="true">🎁</span>
+                        </div>
+                        <h3 class="help-option__title">Podaruj darowiznę</h3>
+                        <p>Leczenie i karma kosztują. Wspieraj nas regularnie lub jednorazowo online.</p>
+                        <a href="src/html/pomagam.html#darowizna" class="btn btn--secondary">Wpłacam teraz</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--cta-banner" id="cta-1-5">
+            <div class="container container--medium reveal-on-scroll">
+                <h2 class="cta-banner__title">Twój 1,5% to ich pełna miska i zdrowie</h2>
+                <p class="cta-banner__krs">KRS: 0000154454</p>
+                <p class="cta-banner__text">Wypełniając PIT, wpisz nasz numer. To najprostsza forma pomocy, która ratuje
+                    życie.</p>
+                <a href="src/html/pomagam.html" class="btn btn--primary btn--large">Chcę przekazać 1,5%</a>
+            </div>
+        </section>
+
+        <section class="section section--partners" id="partnerzy">
+            <div class="container">
+                <h2 class="section__title section__title--center reveal-on-scroll">Wspierają nas</h2>
+                <div class="partners-grid reveal-on-scroll">
+
+                    <div class="partners-grid__item">
+                        <img src="src/assets/images/logo-epl-blue.png" alt="Stowarzyszenie EuropejskaPL" loading="lazy">
+                    </div>
+                    <div class="partners-grid__item">
+                        <img src="src/assets/images/partner-logo-2.png" alt="Logo partnera 2" loading="lazy">
+                    </div>
+                    <div class="partners-grid__item">
+                        <img src="src/assets/images/partner-logo-3.png" alt="Logo partnera 3" loading="lazy">
+                    </div>
+                    <div class="partners-grid__item">
+                        <img src="src/assets/images/partner-logo-4.png" alt="Logo partnera 4" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--contact-preview section--light-bg" id="kontakt-preview">
+            <div class="container container--medium reveal-on-scroll">
+                <h2 class="section__title">Masz pytania? Skontaktuj się z nami</h2>
+                <p>Chcesz adoptować zwierzaka, zgłosić interwencję, a może dołączyć do wolontariatu? Czekamy na Twoją
+                    wiadomość.</p>
+                <a href="src/html/kontakt.html" class="btn btn--primary">Napisz do nas</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__container">
+
+            <div class="site-footer__col site-footer__col--about">
+                <img src="src/assets/images/logo-tpz-white.png" alt="Towarzystwo Opieki nad Zwierzętami"
+                    class="site-footer__logo" loading="lazy">
+                <p>Pomagamy zwierzętom w potrzebie. Leczymy, znajdujemy domy, edukujemy. Działamy w Tarnowie i
+                    okolicach.</p>
+            </div>
+
+            <div class="site-footer__col site-footer__col--nav">
+                <h4 class="site-footer__title">Na skróty</h4>
+                <ul class="site-footer__list">
+                    <li><a href="src/html/o-nas.html">O nas</a></li>
+                    <li><a href="#historie">Nasi podopieczni</a></li>
+                    <li><a href="#jak-pomoc">Jak pomóc?</a></li>
+                    <li><a href="src/html/kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="site-footer__col site-footer__col--legal">
+                <h4 class="site-footer__title">Formalności</h4>
+                <ul class="site-footer__list">
+                    <li><a href="src/html/polityka-prywatnosci.html">Polityka prywatności</a></li>
+                    <li><a href="#">Statut</a></li>
+                </ul>
+            </div>
+
+            <div class="site-footer__col site-footer__col--data">
+                <h4 class="site-footer__title">Dane organizacji</h4>
+                <p>
+                    <strong>Towarzystwo Opieki nad Zwierzętami</strong><br>
+                    Oddział w Tarnowie<br>
+                    ul. Przykładowa 1, 33-100 Tarnów<br>
+                    <strong>KRS:</strong> 0000154454<br>
+                    <strong>NIP:</strong> (Wpisz NIP)<br>
+                    <strong>REGON:</strong> (Wpisz REGON)
+                </p>
+            </div>
+
+        </div>
+        <div class="site-footer__bottom-bar">
+            <div class="container">
+                <p>© <span id="current-year"></span> Towarzystwo Opieki nad Zwierzętami. Wszelkie prawa zastrzeżone.</p>
+                <div class="site-footer__socials">
+                    <a href="#" aria-label="Facebook"><span class="icon-facebook"></span></a>
+                    <a href="#" aria-label="Instagram"><span class="icon-instagram"></span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

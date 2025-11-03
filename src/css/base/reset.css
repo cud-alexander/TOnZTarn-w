@@ -1,0 +1,93 @@
+/* === Nowoczesny Reset CSS === */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, ul, ol, li, figure {
+    margin: 0;
+}
+
+/* === POPRAWKA: Usunięcie obejścia === */
+main {
+    position: relative;
+    /* usunięto 'isolation: isolate' */
+}
+/* === KONIEC POPRAWKI === */
+
+
+img, picture, video, canvas, svg {
+/* (reszta pliku bez zmian) */
+/* ... */
+    display: block;
+    max-width: 100%;
+}
+
+ul, ol {
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-primary), var(--font-system);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--primary-500);
+    background-color: var(--background-light);
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+}
+
+a {
+    color: var(--accent-500);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+a:hover {
+    color: var(--accent-600);
+    text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.skip-link {
+    position: absolute;
+    top: -1000px;
+    left: 0;
+    background: var(--primary-700);
+    color: var(--white);
+    padding: var(--space-3);
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+.skip-link:focus {
+    top: 0;
+}
+/* Plik: src/css/base/reset.css LUB src/css/main.css */
+
+html {
+  /* 1. Włącza płynną animację dla wszystkich linków-kotwic */
+  scroll-behavior: smooth;
+
+  /* 2. Naprawia problem z lepkim nagłówkiem */
+  scroll-padding-top: 33px;
+}

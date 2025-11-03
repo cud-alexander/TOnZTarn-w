@@ -1,0 +1,109 @@
+/* === Klasy Pomocnicze (Utility Classes) === */
+
+/* (Kontener, Siatka, Dostępność - bez zmian) */
+.container { width: 100%; max-width: var(--container-max-width); margin-left: auto; margin-right: auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
+.container--medium { max-width: var(--container-max-width-medium); }
+.grid { display: grid; gap: var(--space-5); }
+.grid--2-cols, .grid--2-cols-gap { grid-template-columns: 1fr; gap: var(--space-5); }
+.grid--3-cols { grid-template-columns: 1fr; }
+.grid--4-cols { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+@media (min-width: 768px) {
+    .grid--2-cols, .grid--2-cols-gap { grid-template-columns: repeat(2, 1fr); }
+    .grid--3-cols { grid-template-columns: repeat(3, 1fr); }
+}
+.visually-hidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; white-space: nowrap; }
+
+/* Przyciski */
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 2px solid transparent; /* Baza dla wszystkich przycisków */
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition-elastic);
+}
+.btn:hover {
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+.btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+.btn:focus-visible {
+    outline: 3px solid var(--accent-500);
+    outline-offset: 3px;
+}
+
+/* === POPRAWKA (Problem 1) === */
+/* Używamy jednolitego koloru tła zamiast gradientu */
+.btn--primary {
+    background: var(--accent-500); /* Jednolity kolor */
+    color: var(--primary-700);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-500); /* Ten sam kolor dla ramki */
+}
+.btn--primary:hover {
+    color: var(--primary-700);
+    box-shadow: var(--shadow-lg);
+    background: var(--accent-600); /* Jaśniejszy przy najechaniu */
+    border-color: var(--accent-600);
+}
+
+/* Przyciski w sekcji Hero i CTA mogą pozostać gradientowe (jeśli chcemy) */
+.hero .btn--primary,
+.section--cta-banner .btn--primary {
+    background: linear-gradient(90deg, var(--accent-600) 0%, var(--accent-500) 100%);
+    border: none;
+    /* Musimy dodać 2px paddingu, aby wyrównać rozmiar, bo usunęliśmy ramkę */
+    padding: calc(0.85rem + 2px) calc(2rem + 2px);
+}
+.hero .btn--large,
+.section--cta-banner .btn--large {
+    padding: calc(1rem + 2px) calc(2.5rem + 2px);
+}
+
+
+/* Przycisk na Hero (biały obrys) */
+.btn--outline {
+    background-color: transparent;
+    color: var(--white);
+    border-color: var(--white);
+    box-shadow: none;
+}
+.btn--outline:hover {
+    background-color: var(--white);
+    color: var(--primary-700);
+    border-color: var(--white);
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+/* Przycisk drugorzędny (outline) */
+.btn--secondary {
+    background-color: transparent;
+    border-color: var(--accent-500);
+    color: var(--accent-500);
+    box-shadow: none;
+}
+.btn--secondary:hover {
+    background-color: var(--accent-500);
+    color: var(--primary-700);
+    box-shadow: var(--shadow-md);
+}
+
+.btn--large {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+}
+
+/* Inne */
+.text-center { text-align: center; }
+.responsive-image { width: 100%; height: auto; border-radius: var(--radius-md); }

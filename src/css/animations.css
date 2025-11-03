@@ -1,0 +1,64 @@
+/* === Animacje === */
+
+/* Keyframes do wejścia */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Klasy dla Intersection Observer */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), 
+                transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Obsługa redukcji ruchu */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: translateY(0);
+        transition: none;
+    }
+    
+    .hero__content {
+        transition: none;
+    }
+}
+
+/* (Dodaj ten kod na końcu istniejącego pliku) */
+
+/* === NOWA ANIMACJA: Subtelne pulsowanie dla nawigacji === */
+@keyframes subtle-pulse {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.12); /* Szczyt pulsowania */
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
