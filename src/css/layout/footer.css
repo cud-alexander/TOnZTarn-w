@@ -1,9 +1,8 @@
-/* === Układ: Stopka (Footer) === */
+/* === Układ: Stopka (Footer) [WERSJA WYCZYSZCZONA] === */
 
-/* === ZMIANA: Ciemniejsze, cieplejsze tło === */
 .site-footer {
     background-color: var(--background-dark);
-    color: var(--neutral-200);
+    color: #D9DBDF; /* Domyślny kolor tekstu */
     padding-top: var(--space-6);
     font-size: var(--font-size-sm);
 }
@@ -17,11 +16,13 @@
     color: var(--accent-500); /* Używamy akcentu do hover */
     text-decoration: underline;
 }
-/* ... (reszta pliku bez zmian) ... */
+
+/* === Siatka stopki === */
 .site-footer__container {
     display: grid;
     gap: var(--space-5);
     grid-template-columns: 1fr;
+    align-items: start; /* Wyrównuje kolumny do góry */
 }
 @media (min-width: 640px) {
     .site-footer__container {
@@ -34,34 +35,57 @@
     }
 }
 
-/* === DODANE: Kontener na logotypy === */
-/* W HTMLu opakuj oba loga w ten div: <div class="site-footer__logo-group"> ... </div> */
+.site-footer__col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Logotypy === */
 .site-footer__logo-group {
     display: flex;
     align-items: center;
     gap: var(--space-4); /* Odstęp między logami */
     margin-bottom: var(--space-3);
+    transform: translateX(-14px); /* Lekkie przesunięcie z Twojego kodu */
 }
 
-/* ZMIANA: Powiększone logo TPZ */
+/* Przesunięcie logo do góry na desktopie */
+@media (min-width: 992px) {
+    .site-footer__col--about .site-footer__logo-group {
+        transform: translateY(-13px) translateX(-14px);
+    }
+}
+
+/* Logo TPZ */
 .site-footer__logo {
-    max-width: 170px; /* Zwiększono ze 150px */
-    opacity: 1; /* Lepsza widoczność */
-    margin-bottom: 0; /* Przeniesione do .site-footer__logo-group */
+    display: block;
+    max-width: 170px;
+    height: auto;
+    opacity: 1;
+    margin-bottom: 0;
 }
 
-/* === DODANE: Styl dla logo EPL === */
+/* Logo EPL */
 .site-footer__logo--epl {
-    max-width: 70px; /* Ustaw szerokość dla logo EPL */
+    display: block;
+    max-width: 70px;
+    height: auto;
     opacity: 1;
 }
 
-/* ZMIANA: Czcionka bardziej "wyraźna" */
+/* Filtr "wybielający" logo EPL (jeśli jest kolorowe) */
+.site-footer__logo--epl--invert {
+    filter: brightness(0) invert(1) contrast(105%);
+}
+
+/* === Teksty w kolumnach === */
 .site-footer__col--about p {
     max-width: 300px;
-    line-height: 1.5;
-    opacity: 0.9; /* Zwiększono z 0.8 */
+    line-height: 1.4;
+    opacity: 0.9;
+    margin-top: -16px; /* Przysunięcie tekstu do logotypów */
 }
+
 .site-footer__title {
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
@@ -70,6 +94,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
 .site-footer__list {
     list-style: none;
     padding: 0;
@@ -79,16 +104,18 @@
     margin-bottom: var(--space-2);
 }
 
-/* ZMIANA: Czcionka bardziej "wyraźna" */
 .site-footer__col--data p {
     line-height: 1.7;
-    opacity: 0.9; /* Zwiększono z 0.8 */
+    opacity: 0.9;
 }
+
+/* === Dolny pasek (Copyright + Sociale) === */
 .site-footer__bottom-bar {
     margin-top: var(--space-5);
     padding: var(--space-4) 0;
     border-top: 1px solid var(--primary-500);
 }
+
 .site-footer__bottom-bar .container {
     display: flex;
     flex-direction: column;
@@ -102,25 +129,32 @@
     }
 }
 
-/* ZMIANA: Czcionka bardziej "wyraźna" */
 .site-footer__bottom-bar p {
     margin: 0;
-    opacity: 0.8; /* Zwiększono z 0.7 */
+    opacity: 0.8;
 }
+
 .site-footer__socials {
     display: flex;
     gap: var(--space-3);
 }
 
-/* ZMIANA: Czcionka bardziej "wyraźna" */
 .site-footer__socials a {
-    font-size: var(--font-size-lg);
-    opacity: 0.8; /* Zwiększono z 0.7 */
+    font-size: var(--font-size-lg); /* To nada rozmiar ikonom w środku */
+    opacity: 0.8;
     transition: var(--transition-fast);
+    text-decoration: none; /* Usuwamy podkreślenie z linków-ikon */
 }
+
 .site-footer__socials a:hover {
     opacity: 1;
-    color: var(--accent-500);
+    color: var(--accent-500); /* To nada kolor ikonom w środku */
     transform: scale(1.1);
     text-decoration: none;
+}
+
+/* Nadpisujemy styl dla ikon wewnątrz linków (opcjonalne, ale zalecane) */
+.site-footer__socials a i {
+    color: inherit; /* Ikona dziedziczy kolor z linku <a> */
+    transition: inherit; /* Ikona dziedziczy animację z linku <a> */
 }
