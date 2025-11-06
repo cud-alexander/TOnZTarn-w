@@ -3,46 +3,57 @@
  * Główny plik inicjalizujący skrypty
  */
 
-// === Importy modułów ===
-import { initHeader } from '/src/js/modules/header.js';
-import { initMobileMenu } from '/src/js/modules/mobile-menu.js';
-import { initReveal } from '/src/js/modules/reveal.js';
-import { initCalculator } from '/src/js/modules/calculator.js';
-import { attachFloaters } from '/src/js/modules/floaters.js';
+// === Importy modułów (zawsze względnie względem tego pliku!) ===
+@import url("/src/assets/css/base/reset.css");
+@import url("/src/assets/css/base/variables.css");
+@import url("/src/assets/css/base/helpers.css");
 
-// === Importy utility (narzędzi) ===
-import { initSkipLink } from '/src/js/utils/a11y.js';
-import { initOrphanFix } from '/src/js/utils/orphans.js';
-import { initCopyToClipboard } from '/src/js/utils/clipboard.js';
+@import url("/src/assets/css/layout/main.css");
+@import url("/src/assets/css/layout/header.css");
+@import url("/src/assets/css/layout/footer.css");
+
+@import url("/src/assets/css/components/nav.css");
+@import url("/src/assets/css/components/cards.css");
+
+@import url("/src/assets/css/sections.css");
+@import url("/src/assets/css/animations.css");
+
 
 console.debug('[main] boot');
 
 /* =================================================================== */
-/* FAVICONS – globalna inicjalizacja (dla wszystkich stron)
+/* Wyznaczenie BASE dla ścieżek dynamicznych (head/footer, favicony)
+/* Działa dla:
+   - index.html  -> <script src="src/js/main.js">    => BASE = "src/"
+   - podstrony   -> <script src="../js/main.js">     => BASE = "../"
 /* =================================================================== */
-function initFavicons() {
-  const HEAD = document.head;
-  const BASE = '/src/assets/images/icons/';
+const _scriptEl = document.querySelector('script[type="module"][src*="js/main.js"]');
+const BASE = _scriptEl
+  ? _scriptEl.getAttribute('src').replace(/js\/main\.js.*$/, '')
+  : 'src/'; // awaryjnie przyjmij "src/"
 
-  // Usuwamy duplikaty (np. przy przeładowaniu)
-  [...HEAD.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]')].forEach(el => el.remove());
+const ICONS_BASE = `${BASE}assets/images/icons/`;
 
-  // Querystring z timestampem, żeby przeglądarka nie cache’owała starego favicon.ico
+/* =================================================================== */
+/* Favicons – fallback (tylko jeśli nie przyjdą z head.html)
+/* =================================================================== */
+function ensureFavicons() {
+  // jeśli już są ikony (np. z head.html) — nic nie rób
+  if (document.head.querySelector('link[rel="icon"], link[rel="apple-touch-icon"]')) return;
+
   const v = `?v=${Date.now()}`;
-
   const links = [
-    { rel: 'icon', type: 'image/x-icon', href: `${BASE}favicon.ico${v}` },
-    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${BASE}favicon-32x32.png${v}` },
-    { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${BASE}favicon-16x16.png${v}` },
-    { rel: 'apple-touch-icon', sizes: '180x180', href: `${BASE}apple-touch-icon.png${v}` },
-    // Opcjonalnie nowoczesny SVG (jeśli chcesz):
-    // { rel: 'icon', type: 'image/svg+xml', href: `${BASE}favicon.svg${v}` },
+    { rel: 'icon', type: 'image/x-icon', href: `${ICONS_BASE}favicon.ico${v}` },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${ICONS_BASE}favicon-32x32.png${v}` },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${ICONS_BASE}favicon-16x16.png${v}` },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: `${ICONS_BASE}apple-touch-icon.png${v}` },
+    // { rel: 'icon', type: 'image/svg+xml', href: `${ICONS_BASE}favicon.svg${v}` }, // jeśli używasz SVG
   ];
 
   for (const cfg of links) {
     const link = document.createElement('link');
     Object.entries(cfg).forEach(([k, val]) => link.setAttribute(k, val));
-    HEAD.appendChild(link);
+    document.head.appendChild(link);
   }
 }
 
@@ -51,17 +62,13 @@ function initFavicons() {
 /* =================================================================== */
 function initFooterYear() {
   const yearEl = document.getElementById('current-year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear().toString();
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 }
 
 /* =================================================================== */
 /* Główna inicjalizacja skryptów */
 /* =================================================================== */
 function main() {
-
-  // === Favicons – dodane na wszystkich stronach ===
-  initFavicons();
-
   // Dostępność
   initSkipLink();
 
@@ -84,8 +91,8 @@ function main() {
       speed: 1.3,
       density: 1.5,
       zindex: 0,
-      palette: ['floater--accent','floater--accent2','floater--neutral'],
-      shapes: ['paw','bone','heart']
+      palette: ['floater--accent', 'floater--accent2', 'floater--neutral'],
+      shapes: ['paw', 'bone', 'heart']
     });
   });
 
@@ -103,39 +110,43 @@ if (document.readyState === 'loading') {
 }
 
 /* =================================================================== */
-/*  WSPÓLNY LOADER DLA HEAD (favicon, meta, style)
-    Plik: /src/components/head.html
+/* Wspólny <head> (favicon/meta/linki) – dołączany dynamicznie
+   Plik:  ${BASE}components/head.html
 /* =================================================================== */
 (async () => {
   try {
-    const res = await fetch('/src/components/head.html', { cache: 'no-cache' });
+    const res = await fetch(`${BASE}components/head.html`, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
-
-    // wstrzykujemy do <head> bez usuwania jego obecnej zawartości
+    // dołącz do <head> (nie usuwamy istniejącej zawartości)
     document.head.insertAdjacentHTML('beforeend', html);
   } catch (e) {
     console.error('Nie udało się wczytać head.html:', e);
+  } finally {
+    // jeśli head.html nie zawierał ikon lub w ogóle nie przyszedł – dołóż fallback
+    ensureFavicons();
   }
 })();
 
 /* =================================================================== */
-/* Wspólny loader komponentu stopki */
+/* Wspólny loader komponentu stopki
+   Plik:  ${BASE}components/footer.html
 /* =================================================================== */
 (async () => {
   const mount = document.getElementById('footer-placeholder');
   if (!mount) return;
 
-  const url = '/src/components/footer.html';
   try {
-    const res = await fetch(url, { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    const res = await fetch(`${BASE}components/footer.html`, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const html = await res.text();
 
+    // wstrzykujemy gotowy footer (zastępuje placeholder)
     mount.outerHTML = html;
 
+    // uzupełnij rok
     const yearEl = document.getElementById('current-year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
   } catch (e) {
     console.error('Nie udało się wczytać stopki:', e);
   }

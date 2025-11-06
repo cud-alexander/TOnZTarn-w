@@ -1,62 +1,25 @@
-/**
- * src/js/modules/mobile-menu.js
- * Obsługa mobilnego menu (drawer).
- */
-import { $, on } from '../utils/dom.js';
-import { trapFocus } from '../utils/a11y.js';
-
-let hamburgerBtn = null;
-let navMenu = null;
-let cleanUpFocusTrap = () => {}; // Funkcja czyszcząca
-
-/**
- * Otwiera lub zamyka menu
- * @param {boolean} [forceOpen] - Wymusza otwarcie lub zamknięcie
- */
-function toggleMenu(forceOpen = null) {
-    if (!hamburgerBtn || !navMenu) return;
-
-    const isOpen = forceOpen !== null ? forceOpen : hamburgerBtn.getAttribute('aria-expanded') === 'false';
-
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-    navMenu.classList.toggle('is-open', isOpen);
-    document.body.classList.toggle('no-scroll', isOpen);
-
-    if (isOpen) {
-        // Ustawienie pułapki fokusu
-        cleanUpFocusTrap = trapFocus(navMenu);
-        // Ustawienie fokusu na pierwszym elemencie w menu
-        navMenu.querySelector('a, button')?.focus();
-    } else {
-        // Czyszczenie pułapki fokusu
-        cleanUpFocusTrap();
-        // Zwrot fokusu na przycisk hamburgera
-        hamburgerBtn.focus();
-    }
-}
-
-/**
- * Inicjalizacja modułu menu mobilnego
- */
+// /src/js/modules/mobile-menu.js
 export function initMobileMenu() {
-    hamburgerBtn = $('.site-header__hamburger');
-    navMenu = $('#main-nav');
+  const btn = document.querySelector('.site-header__hamburger');
+  const nav = document.getElementById('main-nav');
+  if (!btn || !nav) return;
 
-    if (!hamburgerBtn || !navMenu) {
-        console.warn('Nie znaleziono elementów menu mobilnego.');
-        return;
+  const OPEN = 'is-nav-open';
+
+  const toggle = () => {
+    const isOpen = nav.classList.toggle(OPEN);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    document.documentElement.classList.toggle('no-scroll', isOpen);
+  };
+
+  btn.addEventListener('click', toggle);
+
+  // zamknij po kliknięciu w link
+  nav.addEventListener('click', e => {
+    if (e.target.closest('a')) {
+      nav.classList.remove(OPEN);
+      btn.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('no-scroll');
     }
-
-    // Kliknięcie na hamburger
-    on(hamburgerBtn, 'click', () => toggleMenu());
-
-    // Zamykanie menu po kliknięciu linku wewnątrz
-    on(navMenu, 'click', 'a', () => toggleMenu(false));
-
-    // Zamykanie menu klawiszem Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
-            toggleMenu(false);
-        }
-    });
+  });
 }

@@ -1,13 +1,19 @@
-<!-- Favicon (uniwersalne) -->
-<link rel="icon" type="image/x-icon" href="/src/assets/images/icons/favicon.ico">
+<!-- PIERWSZA linia w <head> -->
+<base href="/" />
 
-<!-- Dodatkowe wersje PNG (dla urządzeń Retina) -->
-<link rel="icon" type="image/png" sizes="32x32" href="/src/assets/images/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/src/assets/images/icons/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-<!-- iPhone / iPad -->
-<link rel="apple-touch-icon" href="/src/assets/images/icons/favicon-180x180.png">
+<!-- CSS zawsze od korzenia domeny -->
+<link rel="stylesheet" href="/src/assets/css/reset.css">
+<link rel="stylesheet" href="/src/assets/css/base/variables.css">
+<link rel="stylesheet" href="/src/assets/css/base/helpers.css">
+<link rel="stylesheet" href="/src/assets/css/layout/main.css">
+<link rel="stylesheet" href="/src/assets/css/layout/header.css">
+<link rel="stylesheet" href="/src/assets/css/layout/footer.css">
+<link rel="stylesheet" href="/src/assets/css/components/nav.css">
+<link rel="stylesheet" href="/src/assets/css/components/cards.css">
+<link rel="stylesheet" href="/src/assets/css/sections.css">
+<link rel="stylesheet" href="/src/assets/css/animations.css">
 
-<!-- meta og: -->
-<meta property="og:site_name" content="Towarzystwo Przyjaciół Zwierząt">
-<meta property="og:type" content="website">
+<!-- JS zawsze od korzenia domeny -->
+<script src="/src/js/main.js" defer></script>

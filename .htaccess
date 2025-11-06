@@ -1,0 +1,14 @@
+DirectoryIndex index.html
+RewriteEngine On
+
+# przepuszczaj realne pliki/katalogi (assets, favicon, robots itd.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule . - [L]
+
+# /kontakt/ -> /src/html/kontakt.html  (analogicznie dla pozostałych)
+RewriteRule ^([^/]+)/?$ src/html/$1.html [L]
+
+# 301 ze starych ścieżek na czysty adres
+RewriteCond %{THE_REQUEST} \s/+src/html/([^\s]+)\.html
+RewriteRule ^ /%1/ [R=301,L]

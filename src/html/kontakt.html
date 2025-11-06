@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="/" />
   <title>Kontakt - Towarzystwo Opieki nad Zwierzętami</title>
-  <meta name="description"
-    content="Skontaktuj się z nami w sprawie adopcji, wolontariatu lub zgłoszenia interwencji. Znajdziesz tu nasz adres, e-mail i telefon.">
+  <meta name="description" content="Skontaktuj się z nami w sprawie adopcji, wolontariatu lub zgłoszenia interwencji.">
 
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/src/css/main.css">
-  <script src="/src/js/main.js" type="module" defer></script>
 
-  <link rel="icon" href="/src/assets/images/icons/favicon.ico" sizes="any">
+  <script type="module" src="/src/js/main.js"></script>
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/src/assets/images/icons/favicon.svg" type="image/svg+xml">
 </head>
+
 
 <body class="page page--contact">
 
@@ -25,16 +27,17 @@
     <div class="container site-header__container">
       
       <a href="/" class="site-header__logo-link">
-        <img src="/src/assets/images/logo-tpz.png" 
-             data-logo-light="/src/assets/images/logo-tpz-white.png"
-             data-logo-dark="/src/assets/images/logo-tpz.png" 
-             alt="Towarzystwo Opieki nad Zwierzętami - strona główna"
-             class="site-header__logo site-header__logo--tpz" />
-        <img src="/src/assets/images/logo-epl.png" 
-             data-logo-light="/src/assets/images/logo-epl-white.png"
-             data-logo-dark="/src/assets/images/logo-epl-black.png" 
-             alt="Stowarzyszenie EuropejskaPL - Partner"
-             class="site-header__logo site-header__logo--epl" />
+        <img src="/src/assets/images/logo-tpz-white.png"
+          data-logo-light="/src/assets/images/logo-tpz-white.png"
+          data-logo-dark="/src/assets/images/logo-tpz.png"
+          alt="Towarzystwo Opieki nad Zwierzętami"
+          class="site-header__logo site-header__logo--tpz">
+
+        <img src="/src/assets/images/logo-epl-white.png"
+          data-logo-light="/src/assets/images/logo-epl-white.png"
+          data-logo-dark="/src/assets/images/logo-epl-black.png"
+          alt="Stowarzyszenie EuropejskaPL"
+          class="site-header__logo site-header__logo--epl">
       </a>
 
       <button class="site-header__hamburger" type="button" aria-label="Otwórz menu" aria-expanded="false"
@@ -46,14 +49,14 @@
 
       <nav class="site-header__nav" id="main-nav" aria-label="Główna nawigacja">
         <ul class="site-header__nav-list">
-          <li class="site-header__nav-item"><a href="/src/html/o-nas.html" class="site-header__nav-link">O nas</a></li>
-          <li class="site-header__nav-item"><a href="/#historie" class="site-header__nav-link">Historie</a></li>
-          <li class="site-header__nav-item"><a href="/#jak-pomoc" class="site-header__nav-link">Jak pomóc?</a></li>
-          <li class="site-header__nav-item"><a href="/src/html/kontakt.html" class="site-header__nav-link"
-              aria-current="page">Kontakt</a></li>
+          <li class="site-header__nav-item"><a class="site-header__nav-link" href="/o-nas/">O nas</a></li>
+          <li class="site-header__nav-item"><a class="site-header__nav-link" href="/#historie">Historie</a></li>
+          <li class="site-header__nav-item"><a class="site-header__nav-link" href="/#jak-pomoc">Jak pomóc?</a></li>
+          <li class="site-header__nav-item"><a class="site-header__nav-link" href="/kontakt/">Kontakt</a></li>
         </ul>
-        <a href="/src/html/pomagam.html" class="btn btn--primary site-header__nav-cta">Przekaż 1,5%</a>
+        <a class="btn btn--primary site-header__nav-cta" href="/pomagam/">Przekaż 1,5%</a>
       </nav>
+
     </div>
   </header>
 
