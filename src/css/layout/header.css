@@ -26,6 +26,18 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* When mobile menu is open, show a clean, transparent header and bright logos */
+.site-header.menu-open {
+  /* Visible bar while menu open (like scrolled state) */
+  background: hsla(43, 33%, 95%, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .site-header__container{
   max-width: 1240px;
   margin-inline: auto;

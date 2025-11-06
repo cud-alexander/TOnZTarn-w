@@ -38,6 +38,7 @@
 /* Komponenty */
 @import './components/nav.css'; /* Ten plik naprawi Twoje menu */
 @import './components/cards.css';
+@import './components/modal.css';
 
 /* Animacje (teraz włączone) */
 /* Jeśli strona znowu się zepsuje, zakomentuj tę linię poniżej */

@@ -94,36 +94,59 @@
 .site-header__hamburger[aria-expanded="true"] .site-header__hamburger-inner::after {
     display: none;
 }
+/* Safety: if .is-open is present, force the panel to be rendered */
+.site-header__nav.is-open { display: flex; }
 @media (max-width: 991px) {
+    /* Centered modal-like mobile nav */
     .site-header__nav {
-        display: flex; flex-direction: column; position: fixed;
-        top: 0; right: 0; width: 90%; max-width: 320px; height: 100vh;
-        background-color: var(--white); box-shadow: var(--shadow-lg);
-        padding: var(--space-7) var(--space-5);
-        transform: translateX(100%); visibility: hidden;
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.4s;
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) scale(0.96);
+        opacity: 0; visibility: hidden;
+        width: clamp(280px, 92vw, 420px);
+        max-height: min(90vh, 560px);
+        display: flex; flex-direction: column; align-items: stretch;
+        background-color: var(--white);
+        box-shadow: var(--shadow-lg);
+        border-radius: var(--radius-lg);
+        padding: var(--space-6) var(--space-5);
+        overflow-y: auto;
+        transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease, visibility 0.25s ease;
         z-index: var(--z-index-nav-mobile);
+        text-align: left;
     }
-    .site-header__nav.is-open {
-        transform: translateX(0); visibility: visible;
+    .site-header__nav.is-open { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+    @media (prefers-reduced-motion: reduce) {
+        .site-header__nav { transition: none; }
     }
     body.no-scroll { overflow: hidden; }
-    .site-header__nav-list {
-        flex-direction: column; align-items: flex-start;
-        gap: var(--space-2); width: 100%;
-    }
+    .site-header__nav-list { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-2); width: 100%; margin: 0; padding: 0; list-style: none; }
     .site-header__nav-item { width: 100%; }
+    .site-header__nav-item + .site-header__nav-item { border-top: 1px solid var(--border-color); }
     .site-header__nav-link,
     .site-header:not(.site-header--scrolled) .site-header__nav-link {
-        display: block; width: 100%; font-size: 1.5rem;
+        display: block; width: 100%; font-size: 1.25rem;
         padding: var(--space-3) 0;
-        color: var(--primary-700); /* W menu mobilnym zawsze ciemne */
+        color: var(--primary-700); /* dark text inside modal */
         text-shadow: none;
     }
     .site-header__nav-link::after { display: none; }
-    .site-header__nav-cta {
-        margin-left: 0; margin-top: var(--space-5);
-        width: 100%; text-align: center;
+    .site-header__nav-cta { margin-left: 0; margin-top: var(--space-5); width: 100%; text-align: center; }
+    /* Force CTA to visible accent even when header not scrolled */
+    .site-header__nav .site-header__nav-cta,
+    .site-header:not(.site-header--scrolled) .site-header__nav.is-open .site-header__nav-cta {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        color: #2b2b2b;
+        background: linear-gradient(90deg, var(--accent-600) 0%, var(--accent-500) 100%);
+        border: 2px solid var(--accent-500);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
+    .site-header__nav .site-header__nav-cta:hover,
+    .site-header__nav .site-header__nav-cta:focus-visible {
+        filter: brightness(1.08);
     }
 }
 @media (min-width: 992px) {
@@ -132,3 +155,16 @@
         display: flex; align-items: center; gap: var(--space-4);
     }
 }
+
+/* === Overlay for mobile nav === */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(4px); /* blur whole site while menu open */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: calc(var(--z-index-header) + 1); /* above header, below panel */
+}
+.mobile-nav-overlay.is-active { opacity: 1; visibility: visible; }

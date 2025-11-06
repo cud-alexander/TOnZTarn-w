@@ -4,20 +4,17 @@
  */
 
 // === Importy modułów (zawsze względnie względem tego pliku!) ===
-@import url("/src/assets/css/base/reset.css");
-@import url("/src/assets/css/base/variables.css");
-@import url("/src/assets/css/base/helpers.css");
+import { initHeader } from './modules/header.js';
+import { initMobileMenu } from './modules/mobile-menu.js';
+import { initReveal } from './modules/reveal.js';
+import { initCalculator } from './modules/calculator.js';
+import { attachFloaters } from './modules/floaters.js';
+import { initLightboxStories } from './modules/lightbox.js';
 
-@import url("/src/assets/css/layout/main.css");
-@import url("/src/assets/css/layout/header.css");
-@import url("/src/assets/css/layout/footer.css");
-
-@import url("/src/assets/css/components/nav.css");
-@import url("/src/assets/css/components/cards.css");
-
-@import url("/src/assets/css/sections.css");
-@import url("/src/assets/css/animations.css");
-
+// === Importy utility ===
+import { initSkipLink } from './utils/a11y.js';
+import { initOrphanFix } from './utils/orphans.js';
+import { initCopyToClipboard } from './utils/clipboard.js';
 
 console.debug('[main] boot');
 
@@ -65,6 +62,41 @@ function initFooterYear() {
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 }
 
+/* Naprawa: zły ALT/tekst w hero na mobile (błędne cudzysłowy w HTML)
+   Usuwa zbłąkane węzły tekstowe z <picture.hero__bg> i ustawia poprawny alt. */
+function sanitizeHeroPicture() {
+  const picture = document.querySelector('picture.hero__bg');
+  if (!picture) return;
+  // Remove stray text nodes inside <picture>
+  Array.from(picture.childNodes).forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+      node.parentNode.removeChild(node);
+    }
+  });
+  // Ensure <img> has safe alt text
+  const img = picture.querySelector('img');
+  if (img) {
+    img.alt = 'Dłoń człowieka i łapa psa symbolizujące zaufanie i pomoc';
+    try { img.loading = 'eager'; } catch {}
+    try { img.decoding = 'sync'; } catch {}
+  }
+}
+
+// Usuwa twarde spacje i nadmiarowe odstępy w sekcji "Misja"
+function normalizeMissionParagraphs() {
+  const section = document.getElementById('misja');
+  if (!section) return;
+  section.querySelectorAll('p').forEach(p => {
+    // Replace both the NBSP character and &nbsp; entity, plus collapse multi-spaces
+    const cleaned = p.innerHTML
+      .replace(/&nbsp;+/gi, ' ')
+      .replace(/\u00A0+/g, ' ')
+      .replace(/[ \t\n\r]{2,}/g, ' ')
+      .trim();
+    p.innerHTML = cleaned;
+  });
+}
+
 /* =================================================================== */
 /* Główna inicjalizacja skryptów */
 /* =================================================================== */
@@ -83,6 +115,7 @@ function main() {
   // Moduły stron
   initReveal();
   initCalculator();
+  initLightboxStories();
 
   // Inicjalizacja Floaterów
   document.querySelectorAll('[data-floater-zone]').forEach(zone => {
@@ -98,6 +131,8 @@ function main() {
 
   // Inne
   initFooterYear();
+  sanitizeHeroPicture();
+  normalizeMissionParagraphs();
 }
 
 /* =================================================================== */

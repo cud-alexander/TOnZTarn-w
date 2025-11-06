@@ -35,6 +35,7 @@
 /* Plik: src/css/layout/sections.css */
 
 .hero {
+  /* Fallback first, then stable viewport unit for mobile browsers */
   --hero-min-height: 100vh;
   display: flex;
   align-items: center;
@@ -46,12 +47,20 @@
   background-color: #333; /* Fallback na wypadek niewczytania obrazka */
 }
 
+/* Use small viewport height to avoid URL bar jumps on mobile */
+@supports (height: 100svh) {
+  .hero { --hero-min-height: 100svh; }
+}
+
 /* Tło <picture> (warstwa 1 - obraz) */
 .hero picture.hero__bg {
   position: absolute;
   inset: 0; /* skrót dla top/left/bottom/right: 0 */
   z-index: 1;
   display: block;
+  /* Hide any accidental text nodes from malformed HTML */
+  font-size: 0;
+  line-height: 0;
 }
 
 .hero picture.hero__bg img {
@@ -59,6 +68,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .hero picture.hero__bg img {
+    /* Show more of the focal point on tall mobile screens */
+    object-position: 50% 25%;
+  }
 }
 
 /* Nakładka z gradientem (warstwa 2) */
@@ -70,8 +86,8 @@
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.4) 0%,  /* Ciemny top dla czytelności menu */
-    rgba(0, 0, 0, 0) 50%,
-    #F7F5F0 95%             /* Płynne przejście do tła strony (zgodnie z Twoją paletą) */
+    rgba(0, 0, 0, 0) 55%,
+    #F7F5F0 90%             /* Delikatniej na krótszych ekranach mobilnych */
   );
 }
 
@@ -128,6 +144,32 @@
 }
 
 /* ----- Sekcja Jak Pomóc ----- */
+.section--mission p {
+    max-width: var(--container-max-width-medium);
+    margin: 0 auto var(--space-3) auto;
+}
+@media (max-width: 768px) {
+    .section--mission p {
+        font-size: 1rem;       /* 16-18px base; keep readable */
+        line-height: 1.5;      /* a bit tighter on mobile */
+        margin-bottom: 0.75rem;/* reduce vertical gaps */
+        text-align: left;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+    }
+}
+/* Tablet: keep paragraphs compact and avoid awkward gaps */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .section--mission p {
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+    text-align: left;
+    word-spacing: 0;
+  }
+}
 .help-option {
     text-align: center;
     padding: var(--space-5);
